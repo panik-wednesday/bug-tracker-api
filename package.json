@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/panik-wednesday/bug-tracker-api#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.12.5"
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
