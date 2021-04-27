@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema({
   tokens: [{
     token: String
   }],
-
 }); 
 
 userSchema.virtual("bugs", {
