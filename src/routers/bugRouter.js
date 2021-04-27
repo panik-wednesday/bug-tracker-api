@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Bug = require("../models/bug.js");
+const auth = require("../middleware/auth.js");
 
 const app = express();
 
