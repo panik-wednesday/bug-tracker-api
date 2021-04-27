@@ -5,7 +5,7 @@ const Bug = require("../models/bug.js");
 const app = express();
 
 // RETRIEVE all bugs
-router.get('/bugs', async (req, res) => {
+router.get('/bugs', auth, async (req, res) => {
     try{
         let bugs = await Bug.find({});
         res.status(200).send(bugs);
@@ -16,7 +16,7 @@ router.get('/bugs', async (req, res) => {
 
 
 // RETRIEVE a specific bug
-router.get('/bugs/:id', async (req, res) => {
+router.get('/bugs/:id', auth, async (req, res) => {
     try {
         let _id = req.params.id;
         let bug = await Bug.findById({_id});
@@ -32,7 +32,7 @@ router.get('/bugs/:id', async (req, res) => {
 
 
 // CREATE a bug
-router.post('/bugs', async (req, res) => {
+router.post('/bugs', auth, async (req, res) => {
     try{
         const bug = new Bug(req.body);
     
@@ -49,7 +49,7 @@ router.post('/bugs', async (req, res) => {
 });
 
 // UPDATE a bug
-router.patch('/bugs/:id', async (req, res) => {
+router.patch('/bugs/:id', auth, async (req, res) => {
     try {
         const newBug = req.body;
         let id = req.params.id;
@@ -69,7 +69,7 @@ router.patch('/bugs/:id', async (req, res) => {
 
 
 // DELETE a bug
-router.delete('/bugs/:id', async (req, res) => {
+router.delete('/bugs/:id', auth, async (req, res) => {
     try {
         let id = req.params.id;
 
