@@ -3,10 +3,16 @@ const router = express.Router();
 const Bug = require("../models/bug.js");
 const auth = require("../middleware/auth.js");
 
-const app = express();
+module.exports = {
+    getAll,
+    getOne,
+    create,
+    update,
+    deleteBug
+};
 
 // RETRIEVE all bugs
-router.get('/bugs', auth, async (req, res) => {
+async function getAll(req, res) {
     try{
         await req.user.populate("bugs").execPopulate();
         res.status(200).send(req.user.bugs);
@@ -14,11 +20,11 @@ router.get('/bugs', auth, async (req, res) => {
         console.log(err);
         res.status(400).send({message:"error"});
     }
-});
+}
 
 
 // RETRIEVE a specific bug
-router.get('/bugs/:id', auth, async (req, res) => {
+async function getOne(req, res) {
     try {
         let _id = req.params.id;
         let bug = await Bug.findById({_id});
@@ -30,11 +36,10 @@ router.get('/bugs/:id', auth, async (req, res) => {
     } catch(err) {
         res.status(400).send({message:"error"});
     }
-})
-
+}
 
 // CREATE a bug
-router.post('/bugs', auth, async (req, res) => {
+async function create(req, res) {
     try{
         const bug = new Bug({...req.body, user:req.user.id});
         await bug.save();
@@ -44,10 +49,10 @@ router.post('/bugs', auth, async (req, res) => {
         console.log(err);
         res.status(400).send({message:"error"});
     }
-});
+}
 
 // UPDATE a bug
-router.patch('/bugs/:id', auth, async (req, res) => {
+async function update(req, res) {
     try {
         const newBug = req.body;
         let id = req.params.id;
@@ -63,11 +68,11 @@ router.patch('/bugs/:id', auth, async (req, res) => {
         console.log(bug);
         res.status(400).send({message:"error"});
     }
-});
+}
 
 
 // DELETE a bug
-router.delete('/bugs/:id', auth, async (req, res) => {
+async function deleteBug(req, res) {
     try {
         let id = req.params.id;
 
@@ -86,7 +91,5 @@ router.delete('/bugs/:id', auth, async (req, res) => {
         console.log(bug);
         res.status(400).send({message:"error"});
     }
-})
-
-module.exports = router;
+}
 

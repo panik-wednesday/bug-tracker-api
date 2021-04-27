@@ -3,9 +3,15 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const router = new express.Router;
 const User = require("../models/user.js");
-const auth = require("../middleware/auth.js");
 
-router.post("/users/register", async (req, res) => {
+module.exports = {
+  create,
+  login,
+  logout,
+  me
+};
+
+async function create(req, res) {
   const user = new User(req.body);
   try {
     await user.save();
@@ -14,11 +20,11 @@ router.post("/users/register", async (req, res) => {
     console.log(error);
     res.status(400).send();
   }
-});
+}
 
-router.post("/users/login", async (req, res) => {
+async function login(req, res) {
+  
   try {
-
     const user = await User.findOne({username: req.body.username});
     if(!user) throw new Error();
 
@@ -36,11 +42,11 @@ router.post("/users/login", async (req, res) => {
     console.log(error);
     res.status(400).send({message:"Wrong username or password"});
   }   
-});
+}
 
-router.post("/users/logout", auth, async (req, res) => {
+async function logout(req, res) {
+  
   try {
-
     // Delete current token
     req.user.tokens = req.user.tokens.filter((token) => {
       return token.token !== req.token;
@@ -53,12 +59,9 @@ router.post("/users/logout", auth, async (req, res) => {
     console.log(error);
     res.status(500).send()
   }
+}
 
-});
-
-router.get("/users/me", auth, async (req, res) => {
+async function me(req, res) {
   // Sample route for auth
   res.send(req.user);
-});
-
-module.exports = router;
+}
