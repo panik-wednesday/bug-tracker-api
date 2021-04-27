@@ -67,5 +67,28 @@ router.patch('/bugs/:id', async (req, res) => {
     }
 });
 
+
+// DELETE a bug
+router.delete('/bugs/:id', async (req, res) => {
+    try {
+        let id = req.params.id;
+
+        Bug.findByIdAndDelete(
+            id,
+            (err, deleted) => {
+                if (err) return res.status(400).send({message:"bug not deleted"});
+                
+                if (deleted === null) return res.status(404).send({message:"bug not found"});
+                
+                res.status(200).send({message:"bug deleted"});
+            }
+        )
+
+    } catch(err) {
+        console.log(bug);
+        res.status(400).send({message:"error"});
+    }
+})
+
 module.exports = router;
 
