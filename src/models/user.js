@@ -10,10 +10,12 @@ const userSchema = new mongoose.Schema({
   tokens: [{
     token: String
   }],
-  bugs : [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref:'Bug'
-  }]
+}); 
+
+userSchema.virtual("bugs", {
+  ref: "Bug",
+  localField: "_id",
+  foreignField: "user"
 });
 
 userSchema.pre("save", async function(next) {
