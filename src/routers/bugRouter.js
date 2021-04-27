@@ -20,12 +20,15 @@ router.get('/bugs/:id', async (req, res) => {
     try {
         let _id = req.params.id;
         let bug = await Bug.findById({_id});
-        res.status(200).send(bug);
+
+        if (bug) {
+            return res.status(200).send(bug);
+        }
+        res.status(404).send({message:"bug not found"});       
     } catch(err) {
-        res.status(404).send({message:"error"});
+        res.status(400).send({message:"error"});
     }
 })
-
 
 
 // CREATE a bug
