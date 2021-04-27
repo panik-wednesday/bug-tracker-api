@@ -8,9 +8,18 @@ const app = express();
 // RETRIEVE all bugs
 router.get('/bugs', auth, async (req, res) => {
     try{
-        console.log(req.user._id);
+        // get all bugs
         let bugs = await Bug.find({});
-        res.status(200).send(bugs);
+
+        // get the list of bugs for the current user
+        const arr = [];
+        bugs.forEach(e => {
+            if (req.user._id == e.userid) {
+                arr.push(e);
+            }
+        })
+        res.status(200).send(arr);
+        
     } catch(err) {
         res.status(400).send({message:"error"});
     }
