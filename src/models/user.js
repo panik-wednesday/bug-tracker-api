@@ -9,7 +9,14 @@ const userSchema = new mongoose.Schema({
   password: String,
   tokens: [{
     token: String
-  }]
+  }],
+
+}); 
+
+userSchema.virtual("bugs", {
+  ref: "Bug",
+  localField: "_id",
+  foreignField: "user"
 });
 
 userSchema.pre("save", async function(next) {
