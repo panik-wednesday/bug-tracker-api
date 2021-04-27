@@ -6,9 +6,10 @@ const app = express();
 
 router.get('/bugs', async (req, res) => {
     try{
-        res.send("bugs list:");
+        let bugs = await Bug.find({});
+        res.status(200).send(bugs);
     } catch(err) {
-        res.status(400).send("error");
+        res.status(400).send({message:"error"});
     }
 });
 
@@ -21,10 +22,10 @@ router.post('/bugs', async (req, res) => {
             console.log("bug added to collection");
         })
 
-        res.status(201);
+        res.status(201).send({message:"bug added to collection"});
 
     } catch(err) {
-        res.status(400).send("error");
+        res.status(400).send({message:"error"});
     }
 });
 
