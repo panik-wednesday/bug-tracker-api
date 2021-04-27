@@ -1,6 +1,6 @@
 const request = require("supertest");
-const app = require("../src/app.js");
-const User = require("../src/models/user.js");
+const app = require("../app.js");
+const User = require("../models/user.js");
 
 test("Should register a new user properly", async () => {
   
