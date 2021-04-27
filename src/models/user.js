@@ -9,6 +9,10 @@ const userSchema = new mongoose.Schema({
   password: String,
   tokens: [{
     token: String
+  }],
+  bugs : [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref:'Bug'
   }]
 });
 
