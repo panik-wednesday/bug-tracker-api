@@ -4,6 +4,7 @@ const Bug = require("../models/bug.js");
 
 const app = express();
 
+// RETRIEVE all bugs
 router.get('/bugs', async (req, res) => {
     try{
         let bugs = await Bug.find({});
@@ -13,6 +14,21 @@ router.get('/bugs', async (req, res) => {
     }
 });
 
+
+// RETRIEVE a specific bug
+router.get('/bugs/:id', async (req, res) => {
+    try {
+        let _id = req.params.id;
+        let bug = await Bug.findById({_id});
+        res.status(200).send(bug);
+    } catch(err) {
+        res.status(404).send({message:"error"});
+    }
+})
+
+
+
+// CREATE a bug
 router.post('/bugs', async (req, res) => {
     try{
         const bug = new Bug(req.body);
