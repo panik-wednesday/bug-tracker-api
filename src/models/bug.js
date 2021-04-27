@@ -5,7 +5,7 @@ const bugSchema = new Schema({
     title: String,
     description: String,
     solved: Boolean,
-    User: {type: Schema.Types.ObjectId, ref:'User'}
+    userid: String
 });
 
 const Bug = mongoose.model("Bug", bugSchema);

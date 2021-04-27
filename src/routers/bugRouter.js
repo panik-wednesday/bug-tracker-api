@@ -8,6 +8,7 @@ const app = express();
 // RETRIEVE all bugs
 router.get('/bugs', auth, async (req, res) => {
     try{
+        console.log(req.user._id);
         let bugs = await Bug.find({});
         res.status(200).send(bugs);
     } catch(err) {
@@ -35,7 +36,13 @@ router.get('/bugs/:id', auth, async (req, res) => {
 // CREATE a bug
 router.post('/bugs', auth, async (req, res) => {
     try{
-        const bug = new Bug(req.body);
+        const bug = new Bug({
+            title: req.body.title,
+            description: req.body.description,
+            solved: req.body.solved,
+            userid: req.user._id
+        });
+        
     
         await bug.save((err, bug) => {
             if (err) return console.error(err);
