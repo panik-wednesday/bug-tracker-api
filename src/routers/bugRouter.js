@@ -48,5 +48,24 @@ router.post('/bugs', async (req, res) => {
     }
 });
 
+// UPDATE a bug
+router.patch('/bugs/:id', async (req, res) => {
+    try {
+        const newBug = req.body;
+        let id = req.params.id;
+
+        Bug.findByIdAndUpdate(
+            id,
+            newBug,
+            (err, updated) => {
+                if (err) return res.status(404).send({message:"bug not updated"});  // if bug was not found
+                res.status(200).send({message:"bug updated"});
+            });
+    } catch(err) {
+        console.log(bug);
+        res.status(400).send({message:"error"});
+    }
+});
+
 module.exports = router;
 
