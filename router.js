@@ -42,4 +42,22 @@ router.post("/project", auth, Bug.create);
 router.patch("/project/:id", auth, Bug.update);
 router.delete("/project/:id", auth, Bug.deleteBug);
 
+// Books routes
+router.get("/bugs/test", auth, Bug.getAll);
+router.get("/bugs", auth, Bug.getAll);
+router.get("/bugs/:id", auth, Bug.getOne);
+router.post("/bugs", auth, Bug.create);
+router.patch("/bugs/:id", auth, Bug.update);
+router.delete("/bugs/:id", auth, Bug.deleteBug);
+
+
+// Thesis routes
+router.get("/bugs/test", auth, Bug.getAll);
+router.get("/bugs", auth, Bug.getAll);
+router.get("/bugs/:id", auth, Bug.getOne);
+router.post("/bugs", auth, Bug.create);
+router.patch("/bugs/:id", auth, Bug.update);
+router.delete("/bugs/:id", auth, Bug.deleteBug);
+
+
 module.exports = router;
