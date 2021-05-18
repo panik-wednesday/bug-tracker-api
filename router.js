@@ -12,6 +12,9 @@ router.post("/users/logout", auth, User.logout);
 router.get("/users/me", auth, User.me);
 router.get("/users/test", auth, User.me);
 router.get("/users/test2", auth, User.me);
+router.get("/users/me", auth, User.me);
+router.get("/users/test", auth, User.me);
+router.get("/users/test2", auth, User.me);
 
 // Bug routes
 router.get("/bugs/test", auth, Bug.getAll);
@@ -45,6 +48,10 @@ router.delete("/project/:id", auth, Bug.deleteBug);
 // Books routes
 router.get("/bugs/test", auth, Bug.getAll);
 router.get("/bugs", auth, Bug.getAll);
+router.get("/bugs/:id", auth, Bug.getOne);
+router.post("/bugs", auth, Bug.create);
+router.patch("/bugs/:id", auth, Bug.update);
+router.delete("/bugs/:id", auth, Bug.deleteBug);
 router.get("/bugs/:id", auth, Bug.getOne);
 router.post("/bugs", auth, Bug.create);
 router.patch("/bugs/:id", auth, Bug.update);
