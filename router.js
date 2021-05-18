@@ -41,5 +41,5 @@ router.get("/project/:id", auth, Bug.getOne);
 router.post("/project", auth, Bug.create);
 router.patch("/project/:id", auth, Bug.update);
 router.delete("/project/:id", auth, Bug.deleteBug);
-
+console.log("hello sam");
 module.exports = router;
