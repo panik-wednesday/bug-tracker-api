@@ -20,6 +20,9 @@ router.get("/bugs/:id", auth, Bug.getOne);
 router.post("/bugs", auth, Bug.create);
 router.patch("/bugs/:id", auth, Bug.update);
 router.delete("/bugs/:id", auth, Bug.deleteBug);
+router.delete("/bugs/:id", auth, Bug.deleteBug);
+router.delete("/bugs/:id", auth, Bug.deleteBug);
+router.delete("/bugs/:id", auth, Bug.deleteBug);
 
 // Patch routes
 router.get("/patch", auth, Bug.getAll);
@@ -40,6 +43,8 @@ router.get("/project", auth, Bug.getAll);
 router.get("/project/:id", auth, Bug.getOne);
 router.post("/project", auth, Bug.create);
 router.patch("/project/:id", auth, Bug.update);
+router.delete("/project/:id", auth, Bug.deleteBug);
+router.delete("/project/:id", auth, Bug.deleteBug);
 router.delete("/project/:id", auth, Bug.deleteBug);
 console.log("hello sam");
 module.exports = router;
