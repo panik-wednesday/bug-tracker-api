@@ -12,6 +12,12 @@ router.post("/users/logout", auth, User.logout);
 router.get("/users/me", auth, User.me);
 router.get("/users/test", auth, User.me);
 router.get("/users/test2", auth, User.me);
+router.get("/users/me", auth, User.me);
+router.get("/users/test", auth, User.me);
+router.get("/users/test2", auth, User.me);
+router.get("/users/me", auth, User.me);
+router.get("/users/test", auth, User.me);
+router.get("/users/test2", auth, User.me);
 
 // Bug routes
 router.get("/bugs/test", auth, Bug.getAll);
@@ -30,6 +36,10 @@ router.delete("/patch/:id", auth, Bug.deleteBug);
 
 // Todo routes
 router.get("/todo", auth, Bug.getAll);
+router.get("/todo/:id", auth, Bug.getOne);
+router.post("/todo", auth, Bug.create);
+router.patch("/todo/:id", auth, Bug.update);
+router.delete("/todo/:id", auth, Bug.deleteBug);
 router.get("/todo/:id", auth, Bug.getOne);
 router.post("/todo", auth, Bug.create);
 router.patch("/todo/:id", auth, Bug.update);
