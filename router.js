@@ -18,4 +18,25 @@ router.post("/bugs", auth, Bug.create);
 router.patch("/bugs/:id", auth, Bug.update);
 router.delete("/bugs/:id", auth, Bug.deleteBug);
 
+// Patch routes
+router.get("/patch", auth, Bug.getAll);
+router.get("/patch/:id", auth, Bug.getOne);
+router.post("/patch", auth, Bug.create);
+router.patch("/patch/:id", auth, Bug.update);
+router.delete("/patch/:id", auth, Bug.deleteBug);
+
+// Todo routes
+router.get("/todo", auth, Bug.getAll);
+router.get("/todo/:id", auth, Bug.getOne);
+router.post("/todo", auth, Bug.create);
+router.patch("/todo/:id", auth, Bug.update);
+router.delete("/todo/:id", auth, Bug.deleteBug);
+
+// project routes
+router.get("/project", auth, Bug.getAll);
+router.get("/project/:id", auth, Bug.getOne);
+router.post("/project", auth, Bug.create);
+router.patch("/project/:id", auth, Bug.update);
+router.delete("/project/:id", auth, Bug.deleteBug);
+
 module.exports = router;
